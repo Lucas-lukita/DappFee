@@ -112,6 +112,37 @@ export default function Dashboard() {
             <p className="text-lg font-black text-gray-900 tracking-tight">R$ 18.000,00</p>
           </div>
         </div>
+        {/* Seção do Gráfico */}
+<section className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 mb-8">
+  <div className="flex justify-between items-end mb-6">
+    <div>
+      <h3 className="text-lg font-bold text-gray-800">Evolução do Patrimônio</h3>
+      <p className="text-xs text-gray-400 font-medium">Últimos 6 meses de rendimento RWA</p>
+    </div>
+    <div className="text-right">
+      <span className="text-xs font-bold text-agro-primary bg-agro-light/20 px-2 py-1 rounded">+12.4%</span>
+    </div>
+  </div>
+
+  <div className="flex items-end justify-between h-48 gap-2 px-2">
+    {[
+      { m: 'Set', v: 40 }, { m: 'Out', v: 65 }, { m: 'Nov', v: 45 },
+      { m: 'Dez', v: 90 }, { m: 'Jan', v: 75 }, { m: 'Fev', v: 100 }
+    ].map((data, i) => (
+      <div key={i} className="flex-1 flex flex-col items-center gap-2 group">
+        <div 
+          style={{ height: `${data.v}%` }}
+          className="w-full bg-agro-primary/10 group-hover:bg-agro-accent rounded-t-lg transition-all duration-500 relative"
+        >
+          <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+            {data.v}%
+          </div>
+        </div>
+        <span className="text-[10px] font-bold text-gray-400 uppercase">{data.m}</span>
+      </div>
+    ))}
+  </div>
+</section>
 
         {/* Tabela de Transações Recentes (UX de Dashboard Sênior) */}
         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
