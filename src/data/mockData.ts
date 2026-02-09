@@ -1,4 +1,4 @@
-// Vamos enviar dados fictícios para simular a conta do usuário, portfólio e transações. Esses dados serão usados para testar a interface e as funcionalidades do aplicativo.
+// Vamos enviar dados fictícios na minha máquina para simular a conta do usuário, portfólio e transações. Esses dados serão usados para testar a interface e as funcionalidades do aplicativo.
 export const userAccount = {
   ownerName: "Produtor Rural",
   balance: 145000.00,
