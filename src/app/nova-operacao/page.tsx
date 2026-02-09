@@ -1,122 +1,128 @@
 "use client";
 
+"use client";
+
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { ArrowLeft, CheckCircle, AlertCircle, DollarSign, Send } from 'lucide-react';
+import { 
+  ArrowLeft, AlertTriangle, Copy, Info, 
+  ChevronRight, Landmark, QrCode, Wallet 
+} from 'lucide-react';
 import Link from 'next/link';
 
-// 1. Schema mais simples possível (evita erros de propriedades desconhecidas)
-const operationSchema = z.object({
-  amount: z.coerce.number()
-    .min(0.01, "Valor inválido")
-    .max(50000, "Limite excedido"),
-  description: z.string().min(3, "Muito curta"),
-  type: z.enum(["PIX", "TED", "DOC"] as const)
-});
-
-// 2. Tipagem manual para garantir que o formulário aceite os campos
-type FormFields = {
-  amount: number;
-  description: string;
-  type: "PIX" | "TED" | "DOC" | ""; // Adicionamos a string vazia para o estado inicial
-};
-
 export default function NewOperationPage() {
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  // 3. Configuração com tipagem explícita
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset
-  } = useForm<FormFields>({
-    resolver: zodResolver(operationSchema) as any, // O 'as any' aqui quebra o loop de erro do TS sem estragar a validação
-    defaultValues: {
-      amount: 0,
-      description: "",
-      type: ""
-    }
-  });
-
-  const onSubmit = async (data: FormFields) => {
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Enviado:", data);
-    setIsSuccess(true);
-    reset();
-    setTimeout(() => setIsSuccess(false), 3000);
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText("8cfbeb5c-3266-4bcf-b843-e54a1078ff55");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+    <div className="min-h-screen bg-[#F4F7F9] p-4 md:p-8 font-sans">
+      <div className="max-w-lg mx-auto space-y-4">
         
-        <div className="bg-agro-dark p-6 text-white flex items-center gap-4">
-          <Link href="/" className="hover:bg-white/10 p-2 rounded-full transition-colors">
-            <ArrowLeft size={20} />
+        {/* Header de Navegação */}
+        <div className="flex items-center gap-4 mb-6">
+          <Link href="/" className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors">
+            <ArrowLeft size={20} className="text-gray-600" />
           </Link>
-          <h1 className="text-xl font-bold font-sans">Nova Operação</h1>
+          <h1 className="text-xl font-bold text-gray-800 tracking-tight">Depositar BRL(reais)</h1>
         </div>
 
-        <div className="p-8">
-          {isSuccess && (
-            <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-lg flex items-center gap-3 border border-green-200">
-              <CheckCircle size={20} />
-              <span className="font-medium">Sucesso!</span>
-            </div>
-          )}
+        {/* Card de Alerta (Atenção) */}
+        <div className="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-red-500 flex gap-4">
+          <div className="text-red-500 shrink-0">
+            <AlertTriangle size={28} />
+          </div>
+          <div className="space-y-1">
+            <h4 className="font-bold text-red-600 text-lg">Atenção!</h4>
+            <p className="text-sm text-gray-500 leading-relaxed">
+              A conta bancária de origem do depósito deve ser do mesmo CPF cadastrado no <span className="font-bold">FeeAgro</span>.
+            </p>
+          </div>
+        </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2 font-sans">Valor</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                  <DollarSign size={18} />
-                </div>
-                <input
-                  type="number"
-                  step="0.01"
-                  {...register('amount')}
-                  className="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-agro-primary transition-all font-sans"
-                />
+       
+        <div className="bg-white p-6 rounded-2xl shadow-sm space-y-4">
+          <h3 className="text-gray-500 font-bold text-sm uppercase tracking-wider">
+            Limites <span className="text-agro-primary">disponíveis</span> para depósito Reais
+          </h3>
+          
+          <div className="space-y-3">
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-gray-500 font-medium">Mínimo</span>
+              <span className="font-bold text-gray-800">R$ 0,01</span>
+            </div>
+            
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-gray-500 font-medium">Máximo mensal</span>
+              <div className="text-right">
+                <span className="font-bold text-agro-primary">R$ 80.000,00</span>
+                <span className="text-gray-400 block text-[10px]">de R$ 80.000,00</span>
               </div>
-              {errors.amount && <p className="text-red-500 text-xs mt-1 font-sans">{errors.amount.message}</p>}
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2 font-sans">Descrição</label>
-              <input
-                {...register('description')}
-                className="block w-full px-4 py-3 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-agro-primary transition-all font-sans"
-              />
-              {errors.description && <p className="text-red-500 text-xs mt-1 font-sans">{errors.description.message}</p>}
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-gray-500 font-medium">Máximo anual</span>
+              <div className="text-right">
+                <span className="font-bold text-agro-primary">R$ 103.133,47</span>
+                <span className="text-gray-400 block text-[10px]">de R$ 120.000,00</span>
+              </div>
             </div>
-
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2 font-sans">Método</label>
-              <select
-                {...register('type')}
-                className="block w-full px-4 py-3 border border-gray-200 rounded-xl outline-none bg-white focus:ring-2 focus:ring-agro-primary transition-all font-sans"
-              >
-                <option value="">Selecione...</option>
-                <option value="PIX">PIX</option>
-                <option value="TED">TED</option>
-                <option value="DOC">DOC</option>
-              </select>
-              {errors.type && <p className="text-red-500 text-xs mt-1 font-sans">{errors.type.message}</p>}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-agro-primary hover:bg-agro-dark text-white font-bold py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 font-sans"
-            >
-              {isSubmitting ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> : "Confirmar"}
-            </button>
-          </form>
+          </div>
         </div>
+
+       
+        <div className="bg-white p-5 rounded-2xl shadow-sm flex items-center gap-4 group">
+          <div className="bg-orange-50 p-3 rounded-xl text-orange-500">
+            <QrCode size={24} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] text-gray-400 font-bold uppercase">Deposite fazendo um Pix para:</p>
+            <p className="text-xs font-mono text-gray-800 truncate font-bold" style={{ fontSize: '18px' }}>feAgro@gmail.com</p>
+          </div>
+          <div className="flex gap-2">
+            <button 
+              onClick={copyToClipboard}
+              className={`p-2 rounded-lg transition-colors ${copied ? 'bg-green-100 text-green-600' : 'bg-gray-50 text-gray-400 hover:bg-gray-100'}`}
+            >
+              <Copy size={20} />
+            </button>
+            <button className="p-2 bg-gray-50 text-gray-400 rounded-lg hover:bg-gray-100">
+              <Info size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* Opções Rápidas (Ações) */}
+        <div className="space-y-2">
+          <button className="w-full bg-white p-5 rounded-2xl shadow-sm flex items-center justify-between group hover:bg-gray-50 transition-all border border-transparent hover:border-agro-primary/20">
+            <div className="flex items-center gap-4">
+              <div className="bg-yellow-50 p-3 rounded-xl text-yellow-600">
+                <Wallet size={24} />
+              </div>
+              <span className="font-bold text-gray-700">Faça um #BIX</span>
+            </div>
+            <ChevronRight size={20} className="text-gray-300 group-hover:text-agro-primary transition-colors" />
+          </button>
+
+          <button className="w-full bg-white p-5 rounded-2xl shadow-sm flex items-center justify-between group hover:bg-gray-50 transition-all border border-transparent hover:border-agro-primary/20">
+            <div className="flex items-center gap-4">
+              <div className="bg-gray-50 p-3 rounded-xl text-gray-500">
+                <Landmark size={24} />
+              </div>
+              <span className="font-bold text-gray-700">Dados bancários</span>
+            </div>
+            <ChevronRight size={20} className="text-gray-300 group-hover:text-agro-primary transition-colors" />
+          </button>
+        </div>
+
+        {/* Rodapé Informativo */}
+        <p className="text-center text-[10px] text-gray-400 font-medium px-10">
+          Transferências via TED ou DOC não são aceitas e serão devolvidas automaticamente.
+        </p>
+
       </div>
     </div>
   );
