@@ -1,10 +1,11 @@
 // Vamos enviar dados fictícios na minha máquina para simular a conta do usuário, portfólio e transações. Esses dados serão usados para testar a interface e as funcionalidades do aplicativo.
 export const userAccount = {
-  ownerName: "Produtor Rural",
+  ownerName: "João Silva",
   balance: 145000.00,
   currency: "BRL",
   kycStatus: "Verificado" // 
 };
+
 
 export const portfolio = [
   { asset: "Soja Future RWA", symbol: "SOJA26", quantity: 500, value: 135.50, total: 67750 },
