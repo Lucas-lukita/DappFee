@@ -70,5 +70,3 @@ Utilizei o padrão de "Hydration Safe" para componentes Client-side.
 A navegação entre o Dashboard e o Perfil foi otimizada para evitar refresh de página, mantendo o estado da carteira Web3 ativo através do Web3Provider global.
 
 O gráfico de performance foi desenvolvido do zero usando CSS puro para garantir leveza e customização total das cores esmeralda.
-
-Deseja que eu adicione uma seção de "Próximos Passos" (Roadmap) para mostrar ao avaliador que você já planejou futuras melhorias como "Integração com Smart Contracts" ou "Relatórios em PDF"? Isso mostra visão de produto!
