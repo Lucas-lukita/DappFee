@@ -26,7 +26,7 @@ export default function NewOperationPage() {
     <div className="min-h-screen bg-[#F0F5F2] p-4 md:p-8 font-sans">
       <div className="max-w-lg mx-auto space-y-6">
 
-        {/* Header de Navegação */}
+      
         <div className="flex items-center gap-4 mb-6">
           <Link href="/" className="p-3 bg-white rounded-2xl shadow-sm border border-emerald-50 hover:bg-emerald-50 transition-all group">
             <ArrowLeft size={20} className="text-emerald-600 group-hover:-translate-x-1 transition-transform" />
@@ -37,7 +37,7 @@ export default function NewOperationPage() {
           </div>
         </div>
 
-        {/* Card de Alerta (Atenção) */}
+       
         <div className="bg-white p-6 rounded-[2rem] shadow-xl shadow-red-900/5 border-l-8 border-red-500 flex gap-4">
           <div className="text-red-500 shrink-0 bg-red-50 p-2 rounded-xl h-fit">
             <AlertTriangle size={24} />
@@ -50,7 +50,7 @@ export default function NewOperationPage() {
           </div>
         </div>
 
-        {/* Card de Limites */}
+        
         <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-emerald-50 space-y-5">
           <h3 className="text-gray-400 font-black text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
             <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
@@ -81,7 +81,7 @@ export default function NewOperationPage() {
           </div>
         </div>
 
-        {/* Card PIX */}
+       
         <div className="bg-white p-6 rounded-[2.5rem] shadow-xl border-2 border-emerald-100 flex items-center gap-4 group relative overflow-hidden">
           <div className="bg-emerald-50 p-4 rounded-2xl text-emerald-600 shadow-inner">
             <QrCode size={24} />
@@ -100,7 +100,7 @@ export default function NewOperationPage() {
           </div>
         </div>
 
-        {/* Card de Dados Bancários para TED (Alternativa) */}
+       
         <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-emerald-50">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Dados para TED (Alternativa)</h3>
@@ -111,7 +111,7 @@ export default function NewOperationPage() {
           </div>
 
           <div className="space-y-4">
-            {/* Layout Estilo Cartão Institucional */}
+          
             <div className="bg-gradient-to-br from-[#064E3B] to-[#10B981] p-6 rounded-[2.5rem] text-white shadow-lg relative overflow-hidden group">
               <div className="relative z-10 flex flex-col gap-4">
                 <div className="flex justify-between items-start">
