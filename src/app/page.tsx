@@ -106,7 +106,7 @@ export default function Dashboard() {
           {/* Lateral de Ativos */}
           <div className="lg:col-span-4 h-full">
             <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-emerald-50 h-full">
-              <h3 className="text-[11px] font-black text-emerald-600 uppercase tracking-[0.3em] mb-10">MEUS ATIVOS</h3>
+              <h3 className="text-[11px] font-black text-emerald-600 uppercase tracking-[0.3em] mb-10">Meus Ativos Tokenizados</h3>
               <div className="space-y-8">
                 {portfolio.map((item, idx) => (
                   <div key={idx} className="flex items-center justify-between group">
