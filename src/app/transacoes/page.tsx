@@ -52,7 +52,7 @@ export default function TransactionsPage() {
               filterType === 'ALL' ? 'bg-gray-800 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
-            Todas
+           
           </button>
           
           <button 
@@ -70,7 +70,7 @@ export default function TransactionsPage() {
               filterType === 'OUT' ? 'bg-red-100 text-red-700 border border-red-200' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
           >
-            Saídas
+          
           </button>
         </div>
 

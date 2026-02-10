@@ -81,7 +81,7 @@ export default function ProfilePage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* Coluna Esquerda: Dados Cadastrais */}
+        
           <div className="lg:col-span-7 space-y-6">
             <div className="bg-white p-10 rounded-[2.5rem] shadow-lg border border-emerald-50">
               <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-8">Dados Cadastrais</h3>
@@ -120,7 +120,7 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          {/* Coluna Direita: Segurança & Web3 */}
+         
           <div className="lg:col-span-5 space-y-6">
             
             {/* Bloco Web3 Connection */}
