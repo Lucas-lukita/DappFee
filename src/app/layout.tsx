@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css"; // <--- ESTA LINHA TRAZ O VERDE DE VOLTA
+import "./globals.css";
+import { Web3Provider } from "../context/Web3Provider"; // Importando o contexto que criamos
 
 export const metadata: Metadata = {
   title: "Fee Agro",
@@ -13,9 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-     
       <body className="bg-gray-50 text-gray-900 antialiased">
-        {children}
+        
+        <Web3Provider>
+          {children}
+        </Web3Provider>
       </body>
     </html>
   );

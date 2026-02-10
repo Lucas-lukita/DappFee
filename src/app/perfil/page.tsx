@@ -1,33 +1,31 @@
 "use client";
-
 import { userAccount } from '../../data/mockData';
 //import { transactions } from '../../data/mockData';
-
 import { 
   User, ShieldCheck, Mail, MapPin, 
   Phone, Calendar, Camera, ArrowLeft,
-  Settings, LogOut, Award, Wallet, // Adicionado Wallet aqui
-  Link
+  Settings, LogOut, Award, Wallet
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
+import { useAppKit } from '@reown/appkit/react';
+
 export default function ProfilePage() {
-  //fizemos essa gambiarra com o useRouter para o botão de voltar funcionar, já que não temos um layout global com a sidebar. Em um projeto real, isso seria melhor estruturado.
   const router = useRouter();
+  
+ 
+  const { open } = useAppKit();
 
   return (
     <div className="min-h-screen bg-[#F0F5F2] font-sans text-gray-900 pb-10">
       
-     <header className="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
-       
-       //Gambiarra
+      
+      <header className="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
         <button 
           onClick={() => router.push('/')}
           className="flex items-center gap-2 text-emerald-600 hover:text-emerald-800 transition-all group cursor-pointer"
         >
-         
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-          
           <span className="text-xs font-black uppercase tracking-[0.2em]">
             Voltar ao Painel
           </span>
@@ -40,7 +38,7 @@ export default function ProfilePage() {
 
       <main className="max-w-5xl mx-auto px-6 space-y-8">
         
-        {/* Card Principal de Identidade */}
+        
         <section className="bg-white rounded-[3rem] shadow-xl shadow-emerald-900/5 border border-emerald-50 p-8 md:p-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-50 rounded-full -mr-20 -mt-20 opacity-50 blur-3xl" />
           
@@ -74,14 +72,13 @@ export default function ProfilePage() {
             </div>
 
             <button className="bg-[#059669] text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-emerald-200 hover:bg-[#064E3B] transition-all active:scale-95">
-              Editar Perfil
+            
             </button>
           </div>
         </section> 
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-        
           <div className="lg:col-span-7 space-y-6">
             <div className="bg-white p-10 rounded-[2.5rem] shadow-lg border border-emerald-50">
               <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-8">Dados Cadastrais</h3>
@@ -120,10 +117,8 @@ export default function ProfilePage() {
             </div>
           </div>
 
-         
           <div className="lg:col-span-5 space-y-6">
-            
-            {/* Bloco Web3 Connection */}
+           
             <div className="bg-white p-8 rounded-[2.5rem] shadow-lg border border-emerald-50 relative overflow-hidden group">
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-emerald-50 rounded-full opacity-50 blur-2xl transition-colors group-hover:bg-emerald-100" />
               
@@ -137,19 +132,22 @@ export default function ProfilePage() {
                   <div className="bg-white w-12 h-12 rounded-xl shadow-sm flex items-center justify-center mx-auto mb-3 text-emerald-600">
                     <Wallet size={24} />
                   </div>
-                  <p className="text-xs font-black text-[#064E3B] mb-1">Carteira não conectada</p>
-                  <p className="text-[9px] text-gray-400 font-medium mb-4">Acesse seus tokens RWA na rede Polygon.</p>
-                  <button className="w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-600 hover:text-white font-black py-3 rounded-xl text-[9px] uppercase tracking-widest transition-all shadow-sm">
-                    Conectar Wallet
+                  <p className="text-xs font-black text-[#064E3B] mb-1">Ativos Tokenizados</p>
+                  <p className="text-[9px] text-gray-400 font-medium mb-4">Acesse sua carteira via Reown AppKit.</p>
+                  
+                  {/* Botão que dispara o AppKit */}
+                  <button 
+                    onClick={() => open()}
+                    className="w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-600 hover:text-white font-black py-3 rounded-xl text-[9px] uppercase tracking-widest transition-all shadow-sm active:scale-95"
+                  >
+                    Conectar com Reown
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Bloco Segurança */}
             <div className="bg-white p-8 rounded-[2.5rem] shadow-lg border border-emerald-50">
               <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-6">Segurança</h3>
-              
               <div className="space-y-4">
                 <div className="p-4 rounded-2xl bg-[#064E3B] text-white flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -157,7 +155,6 @@ export default function ProfilePage() {
                     <span className="text-[10px] font-black uppercase tracking-widest">KYC Validado</span>
                   </div>
                 </div>
-
                 <button className="w-full flex items-center justify-between p-4 rounded-2xl bg-gray-50 hover:bg-emerald-50 transition-colors group">
                   <div className="flex items-center gap-3">
                     <div className="bg-white p-2 rounded-lg text-gray-400 group-hover:text-emerald-600 shadow-sm">
@@ -169,7 +166,6 @@ export default function ProfilePage() {
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </main>
