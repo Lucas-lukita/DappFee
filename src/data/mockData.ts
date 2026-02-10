@@ -6,6 +6,13 @@ export const userAccount = {
   kycStatus: "Verificado" // 
 };
 
+export const bankAccount = {
+  bankName: "789 - Fee Agro Bank S.A.",
+  agency: "0001",
+  account: "1234567-8",
+  type: "Conta Corrente",
+  pixKey: "depósito@feeagro.com.br"
+};
 
 export const portfolio = [
   { asset: "Soja Future RWA", symbol: "SOJA26", quantity: 500, value: 135.50, total: 67750 },
