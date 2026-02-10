@@ -9,8 +9,8 @@ const config: Config = {
       colors: {
         agro: {
           primary: '#1B2C1B', // Verde Esmeralda
-          accent: '#C5A059',
-          bg: '#F4F7F5 ', 
+          accent: '#16502D',
+          bg: '#F0F7F2', 
         }
       },
     },
