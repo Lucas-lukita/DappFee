@@ -1,25 +1,23 @@
 "use client";
+
 import { userAccount } from '../../data/mockData';
-//import { transactions } from '../../data/mockData';
 import { 
   User, ShieldCheck, Mail, MapPin, 
   Phone, Calendar, Camera, ArrowLeft,
-  Settings, LogOut, Award, Wallet
+  Settings, LogOut, Award, Wallet,
+  Banknote, ChevronRight, Copy
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-
 import { useAppKit } from '@reown/appkit/react';
 
 export default function ProfilePage() {
   const router = useRouter();
-  
- 
   const { open } = useAppKit();
 
   return (
     <div className="min-h-screen bg-[#F0F5F2] font-sans text-gray-900 pb-10">
       
-      
+    
       <header className="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
         <button 
           onClick={() => router.push('/')}
@@ -72,13 +70,14 @@ export default function ProfilePage() {
             </div>
 
             <button className="bg-[#059669] text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-emerald-200 hover:bg-[#064E3B] transition-all active:scale-95">
-            
+              Editar Perfil
             </button>
           </div>
         </section> 
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
+         
           <div className="lg:col-span-7 space-y-6">
             <div className="bg-white p-10 rounded-[2.5rem] shadow-lg border border-emerald-50">
               <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-8">Dados Cadastrais</h3>
@@ -117,8 +116,10 @@ export default function ProfilePage() {
             </div>
           </div>
 
+          
           <div className="lg:col-span-5 space-y-6">
-           
+            
+            {/* Bloco Web3 Connection */}
             <div className="bg-white p-8 rounded-[2.5rem] shadow-lg border border-emerald-50 relative overflow-hidden group">
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-emerald-50 rounded-full opacity-50 blur-2xl transition-colors group-hover:bg-emerald-100" />
               
@@ -135,7 +136,6 @@ export default function ProfilePage() {
                   <p className="text-xs font-black text-[#064E3B] mb-1">Ativos Tokenizados</p>
                   <p className="text-[9px] text-gray-400 font-medium mb-4">Acesse sua carteira via Reown AppKit.</p>
                   
-                  {/* Botão que dispara o AppKit */}
                   <button 
                     onClick={() => open()}
                     className="w-full bg-white border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-600 hover:text-white font-black py-3 rounded-xl text-[9px] uppercase tracking-widest transition-all shadow-sm active:scale-95"
@@ -146,6 +146,41 @@ export default function ProfilePage() {
               </div>
             </div>
 
+            
+            <div className="bg-white p-8 rounded-[2.5rem] shadow-lg border border-emerald-50 relative overflow-hidden group">
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-emerald-50 rounded-full opacity-50 blur-2xl group-hover:bg-emerald-100 transition-colors" />
+              
+              <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-6 flex items-center gap-2">
+                <Banknote size={14} className="text-emerald-500" />
+                Serviços Financeiros
+              </h3>
+
+              <div className="space-y-4 relative z-10">
+                <button 
+                  onClick={() => router.push('/saque')}
+                  className="w-full flex items-center justify-between p-6 rounded-[2rem] bg-emerald-50/50 hover:bg-emerald-100 transition-all group/item border border-emerald-100/50"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="bg-white p-3 rounded-2xl text-emerald-600 shadow-sm group-hover/item:scale-110 transition-transform">
+                      <Wallet size={20} />
+                    </div>
+                    <div className="text-left">
+                      <span className="text-[10px] font-black text-emerald-600 uppercase tracking-widest block">Resgate Disponível</span>
+                      <span className="text-sm font-black text-[#064E3B]">Solicitar Saque BRL</span>
+                    </div>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-emerald-500 shadow-sm">
+                    <ChevronRight size={18} />
+                  </div>
+                </button>
+
+                <p className="text-[9px] font-bold text-gray-400 text-center uppercase tracking-tighter">
+                  Limites diários de saque: R$ 20.000,00
+                </p>
+              </div>
+            </div>
+
+           
             <div className="bg-white p-8 rounded-[2.5rem] shadow-lg border border-emerald-50">
               <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-6">Segurança</h3>
               <div className="space-y-4">
