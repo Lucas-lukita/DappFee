@@ -8,10 +8,9 @@ const config: Config = {
     extend: {
       colors: {
         agro: {
-          primary: '#10B981', // Verde Esmeralda
-          dark: '#064E3B',    // Verde Escuro
-          light: '#D1FAE5',   // Verde Claro
-          earth: '#78350F',   // Marrom Terra
+          primary: '#1B2C1B', // Verde Esmeralda
+          accent: '#C5A059',
+          bg: '#F4F7F5 ', 
         }
       },
     },
